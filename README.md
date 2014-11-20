@@ -3,7 +3,7 @@ tiny-RPG
 
 tiny-RPG is going to be exactly what it sounds like, a very small Role Playing Game. We aim to for a procedurally generated map and radiant quest system, along with artwork and sound, in a very compact (>6MB) package.
 
-Pre-requisets
+Prerequisites
 --------------
 	SDL2
 	SDL2-image
