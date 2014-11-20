@@ -1,6 +1,6 @@
 #ifndef ITEM_H
 #define ITEM_H
-#include <SDL/SDL.h>
+#include <SDL2/SDL.h>
 /*
  *Defines an item structure and corresponding functions
  */
