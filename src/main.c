@@ -1,42 +1,70 @@
-/*
- */
-#include <SDL2/SDL.h>
+
+//Using SDL and standard IO
+#include<SDL2/SDL.h>
 #include <stdio.h>
-#include <stdbool.h>
 
-#define SCREEN_W 640
-#define SCREEN_H 480
+//Screen dimension constants
 
-int main(int argc, char* argv[]){
-	SDL_Window* window = NULL;
-	SDL_Surface* screenSurface = NULL;
-	
-	bool quit = false;
-	SDL_Event event;
+#define SCREEN_WIDTH 640
+#define SCREEN_HEIGHT 480
 
-	while(!quit){
-		while(SDL_PollEvent(&event) != 0){
-			if(event.type == SDL_QUIT){
-				quit = true;
-			}
-		}
+//The window we'll be rendering to
+SDL_Window* window = NULL;
 
-			if(SDL_Init(SDL_INIT_VIDEO) < 0){
-			printf("SDL could not initialize: %s\n", SDL_GetError());
-			}	
-			else{
-				window = SDL_CreateWindow("tiny-RPG", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_W, SCREEN_H, SDL_WINDOW_SHOWN);
+//The surface contained by the window
+SDL_Surface* screenSurface = NULL;
 
-				if(window == NULL){
-					printf("Window could not be created: %s\n", SDL_GetError());
-				}
-				else{
-					screenSurface = SDL_GetWindowSurface(window);
-					SDL_FillRect(screenSurface, NULL, SDL_MapRGB(screenSurface->format, 0, 0, 0));			   
-				}
-			}
+void window_init();
+void window_free();
 
-	}
+int main( int argc, char* args[] )
+{
 
-	return 0;
+    window_init();
+
+    window_free();
+    
+    return 0;
+}
+
+
+void window_init(){
+    
+    //Initialize SDL
+    if( SDL_Init( SDL_INIT_VIDEO ) < 0 )
+    {
+        printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
+    }
+    else
+    {
+        //Create window
+        window = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+        if( window == NULL )
+        {
+            printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
+        }
+        else
+        {
+            //Get window surface
+            screenSurface = SDL_GetWindowSurface(window);
+            
+            //Fill the surface white
+            SDL_FillRect(screenSurface, NULL, SDL_MapRGB(screenSurface->format, 255, 255, 255));
+            
+            //Update the surface
+            SDL_UpdateWindowSurface(window);
+            
+            //Wait two seconds
+            SDL_Delay(2000);
+        }
+    }
+}
+
+void window_free(){
+    
+    //Destroy window
+    SDL_DestroyWindow( window );
+    
+    //Quit SDL subsystems
+    SDL_Quit();
 }
