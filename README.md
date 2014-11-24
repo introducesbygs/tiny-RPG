@@ -25,4 +25,5 @@ Building
 
 ### Windows
 
-Will update soon with build instructions
+1. Install Linux
+2. Wait for further build instructions
