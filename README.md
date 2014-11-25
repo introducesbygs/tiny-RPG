@@ -6,7 +6,8 @@ tiny-RPG is going to be exactly what it sounds like, a very small Role Playing G
 Prerequisites
 --------------
 	SDL2
-	SDL2-image
+	SDL2_image
+	SDL2_tff
 
 Building
 --------
@@ -14,7 +15,7 @@ Building
 ### Linux:
 
 1. Make sure you have gcc/clang and make installed and up-to-date.
-2. Install the SDL2 and SDL_image 2.0 libraries from your distribution repo, or build them from source: [SDL2](https://www.libsdl.org/hg.php), [SDL2_image](https://www.libsdl.org/projects/SDL_image/) development libraries
+2. Install the SDL2 and SDL_image 2.0 libraries from your distribution repo, or build them from source: [SDL2](https://www.libsdl.org/hg.php), [SDL2_image](https://www.libsdl.org/projects/SDL_image/), [SDL2_tff](http://www.libsdl.org/projects/SDL_ttf/) development libraries
 3. Run make inside of the tiny_RPG root directory
 
 ### OSX:
@@ -26,4 +27,4 @@ Building
 ### Windows
 
 1. Install Linux
-2. Wait for further build instructions
+2. Wait for better build instructions
