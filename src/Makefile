@@ -7,4 +7,4 @@ all: $(SRC)
 	$(CC) $(SRC) $(CFLAGS)
 
 OSX: $(SRC)
-	$(CCLANG) $(SRC) $(CFLAGS)
+	$(CCLANG) $(SRC) $(CFLAGS)	

@@ -2,6 +2,7 @@
 //Using SDL and standard IO
 #include<SDL2/SDL.h>
 #include <stdio.h>
+#include <stdbool.h>
 
 //Screen dimension constants
 
@@ -20,6 +21,8 @@ void window_free();
 int main( int argc, char* args[] )
 {
 
+    fprintf(stdout, "a;hdk;jhf");
+    
     window_init();
 
     window_free();
@@ -29,6 +32,11 @@ int main( int argc, char* args[] )
 
 
 void window_init(){
+    
+    bool quit = false;
+    int FPS = 0;
+    float last_tick = 0,current_time;
+    float delta = 0.0;
     
     //Initialize SDL
     if( SDL_Init( SDL_INIT_VIDEO ) < 0 )
@@ -45,6 +53,7 @@ void window_init(){
         }
         else
         {
+            
             //Get window surface
             screenSurface = SDL_GetWindowSurface(window);
             
@@ -54,8 +63,27 @@ void window_init(){
             //Update the surface
             SDL_UpdateWindowSurface(window);
             
-            //Wait two seconds
-            SDL_Delay(2000);
+            SDL_Event event;
+            while (!quit) {
+                current_time = SDL_GetTicks();
+                if (current_time > last_tick) {
+                    delta = current_time - last_tick;
+                    FPS = 1/delta;
+                    last_tick = current_time;
+                }
+                
+                if (SDL_PollEvent(&event)) {
+                    switch (event.type) {
+                        case SDL_QUIT:
+                            quit = true;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+            
+
         }
     }
 }
