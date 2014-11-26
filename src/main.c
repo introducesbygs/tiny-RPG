@@ -2,6 +2,7 @@
 //Using SDL and standard IO
 #include "include/SDL2/SDL.h"
 #include <stdio.h>
+#include <stdbool.h>
 
 //Screen dimension constants
 
@@ -16,6 +17,7 @@ SDL_Surface* screenSurface = NULL;
 
 void window_init();
 void window_free();
+bool running = true;
 
 int main( int argc, char* args[] )
 {
@@ -54,8 +56,22 @@ void window_init(){
             //Update the surface
             SDL_UpdateWindowSurface(window);
             
-            //Wait two seconds
-            SDL_Delay(2000);
+			SDL_Event event;
+			while (running) {
+				if (SDL_PollEvent(&event)) {
+					switch (event.type) {
+					case SDL_QUIT:
+						running = false;
+						break;
+					default:
+						//Do nothing
+						break;
+				
+					}
+				}
+				
+				
+			}
         }
     }
 }
