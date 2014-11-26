@@ -1,0 +1,3 @@
+*.h
+README.md
+src/SDL2.dll
