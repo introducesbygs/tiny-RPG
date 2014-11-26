@@ -1,6 +1,6 @@
 
 //Using SDL and standard IO
-#include<SDL2/SDL.h>
+#include "include/SDL2/SDL.h"
 #include <stdio.h>
 
 //Screen dimension constants
